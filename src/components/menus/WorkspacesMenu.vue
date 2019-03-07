@@ -7,6 +7,10 @@
       </menu-entry>
     </div>
     <hr>
+    <menu-entry @click.native="addCovenantSQLWorkspace">
+      <icon-provider slot="icon" provider-id="couchdbWorkspace"></icon-provider>
+      <span>Add a <b>CovenantSQL</b> backed workspace</span>
+    </menu-entry>
     <menu-entry @click.native="addCouchdbWorkspace">
       <icon-provider slot="icon" provider-id="couchdbWorkspace"></icon-provider>
       <span>Add a <b>CouchDB</b> backed workspace</span>
@@ -55,6 +59,15 @@ export default {
       try {
         store.dispatch('modal/open', {
           type: 'couchdbWorkspace',
+        });
+      } catch (e) {
+        // Cancel
+      }
+    },
+    async addCovenantSQLWorkspace() {
+      try {
+        store.dispatch('modal/open', {
+          type: 'covenantsqlWorkspace',
         });
       } catch (e) {
         // Cancel

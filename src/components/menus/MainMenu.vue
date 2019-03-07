@@ -17,6 +17,9 @@
         <span v-else-if="currentWorkspace.providerId === 'googleDriveWorkspace'">
           <b>{{currentWorkspace.name}}</b> synced with a <a :href="workspaceLocationUrl" target="_blank">Google Drive folder</a>.
         </span>
+        <span v-else-if="currentWorkspace.providerId === 'covenantsqlWorkspace'">
+          <b>{{currentWorkspace.name}}</b> synced with a <a :href="workspaceLocationUrl" target="_blank">CovenantSQL database</a>.
+        </span>
         <span v-else-if="currentWorkspace.providerId === 'couchdbWorkspace'">
           <b>{{currentWorkspace.name}}</b> synced with a <a :href="workspaceLocationUrl" target="_blank">CouchDB database</a>.
         </span>

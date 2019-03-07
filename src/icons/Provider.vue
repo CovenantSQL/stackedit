@@ -26,6 +26,8 @@ export default {
           return 'blogger';
         case 'couchdbWorkspace':
           return 'couchdb';
+        case 'covenantsqlWorkspace':
+          return 'covenantsql';
         default:
           return this.providerId;
       }

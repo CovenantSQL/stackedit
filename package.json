@@ -52,7 +52,7 @@
     "mermaid": "^8.0.0-rc.8",
     "mousetrap": "^1.6.1",
     "normalize-scss": "^7.0.1",
-    "prismjs": "^1.6.0",
+    "prismjs": "^1.9.0",
     "request": "^2.85.0",
     "serve-static": "^1.13.2",
     "tmp": "^0.0.33",

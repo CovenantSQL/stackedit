@@ -67,6 +67,8 @@ export default {
           return rootGetters['data/gitlabTokensBySub'][currentWorkspace.sub];
         case 'couchdbWorkspace':
           return rootGetters['data/couchdbTokensBySub'][currentWorkspace.id];
+        case 'covenantsqlWorkspace':
+          return rootGetters['data/couchdbTokensBySub'][currentWorkspace.id];
         default:
           return mainWorkspaceToken;
       }

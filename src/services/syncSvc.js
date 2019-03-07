@@ -5,6 +5,7 @@ import diffUtils from './diffUtils';
 import networkSvc from './networkSvc';
 import providerRegistry from './providers/common/providerRegistry';
 import googleDriveAppDataProvider from './providers/googleDriveAppDataProvider';
+import './providers/covenantsqlWorkspaceProvider';
 import './providers/couchdbWorkspaceProvider';
 import './providers/githubWorkspaceProvider';
 import './providers/gitlabWorkspaceProvider';
