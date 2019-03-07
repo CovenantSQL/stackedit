@@ -1,8 +1,9 @@
 <template>
   <modal-inner aria-label="Add CovenantSQL Workspace">
     <div class="modal__content">
-      <div class="modal__image">CovenantSQL Icon here
-        <icon-provider provider-id="couchdb"></icon-provider>
+      CovenantSQL Icon here:
+      <div class="modal__image">
+        <icon-provider provider-id=""></icon-provider>
       </div>
       <p>
         Create a workspace synced with a <b>CovenantSQL</b> database.

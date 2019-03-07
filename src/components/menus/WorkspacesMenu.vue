@@ -8,7 +8,7 @@
     </div>
     <hr>
     <menu-entry @click.native="addCovenantSQLWorkspace">
-      <icon-provider slot="icon" provider-id="couchdbWorkspace"></icon-provider>
+      <icon-provider slot="icon" provider-id="covenantsqlWorkspace"></icon-provider>
       <span>Add a <b>CovenantSQL</b> backed workspace</span>
     </menu-entry>
     <menu-entry @click.native="addCouchdbWorkspace">

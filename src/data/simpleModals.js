@@ -11,6 +11,11 @@ export default {
     'No',
     'Yes, delete',
   ),
+  covenantsqlWorkspace: simpleModal(
+    config => `<p><b>${JSON.stringify(config)}</b> contains illegal characters. Do you want to strip them?</p>`,
+    'Cancel',
+    'Okay',
+  ),
   discussionDeletion: simpleModal(
     '<p>You are about to delete a discussion. Are you sure?</p>',
     'No',
