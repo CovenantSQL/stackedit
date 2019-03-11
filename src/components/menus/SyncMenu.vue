@@ -75,6 +75,10 @@
         </menu-entry>
       </div>
       <hr>
+      <menu-entry @click.native="addCovenantsqlAccount">
+        <icon-provider slot="icon" provider-id="covenantsql"></icon-provider>
+        <span>Add CovenantSQL account</span>
+      </menu-entry>
       <menu-entry @click.native="addDropboxAccount">
         <icon-provider slot="icon" provider-id="dropbox"></icon-provider>
         <span>Add Dropbox account</span>
@@ -168,6 +172,13 @@ export default {
     async manageSync() {
       try {
         await store.dispatch('modal/open', 'syncManagement');
+      } catch (e) { /* cancel */ }
+    },
+    async addCovenantsqlAccount() {
+      try {
+        await store.dispatch('modal/open', { type: 'covenantsqlAccount' });
+        // await dropboxHelper.addAccount(!store.getters['data/localSettings']
+        // .dropboxRestrictedAccess);
       } catch (e) { /* cancel */ }
     },
     async addDropboxAccount() {

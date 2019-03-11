@@ -87,6 +87,7 @@ import ZendeskPublishModal from './modals/providers/ZendeskPublishModal';
 import CouchdbWorkspaceModal from './modals/providers/CouchdbWorkspaceModal';
 import CouchdbCredentialsModal from './modals/providers/CouchdbCredentialsModal';
 import CovenantsqlWorkspaceModal from './modals/providers/CovenantSQLWorkspaceModal';
+import CovenantsqlAccountModal from './modals/providers/CovenantSQLAccountModal';
 
 const getTabbables = container => container.querySelectorAll('a[href], button, .textfield, input[type=checkbox]')
   // Filter enabled and visible element
@@ -137,6 +138,7 @@ export default {
     CouchdbWorkspaceModal,
     CouchdbCredentialsModal,
     CovenantsqlWorkspaceModal,
+    CovenantsqlAccountModal,
   },
   computed: {
     ...mapGetters([

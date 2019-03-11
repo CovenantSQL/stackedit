@@ -31,4 +31,6 @@ export default () => ({
   zendescPublishSectionId: '',
   zendescPublishLocale: '',
   zendeskPublishTemplate: 'plainHtml',
+  covenantsqlEndpoint: '',
+  covenantsqlDBID: '',
 });

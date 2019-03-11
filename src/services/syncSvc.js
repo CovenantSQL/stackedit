@@ -362,6 +362,10 @@ const syncFile = async (fileId, syncContext = new SyncContext()) => {
       const uploadContent = async (content, ifNotTooLate) => {
         // On simple provider, call simply uploadContent
         if (syncLocation.id !== 'main') {
+          console.log('//---------- simple upload provider', provider);
+          console.log('//---------- simple upload content', content);
+          console.log('//---------- simple upload token', token);
+          console.log('//---------- simple upload syncLocation', syncLocation);
           return provider.uploadContent(token, content, syncLocation, ifNotTooLate);
         }
 
@@ -488,6 +492,7 @@ const syncFile = async (fileId, syncContext = new SyncContext()) => {
           ...mergedContent,
           history: mergedContentHistory.slice(0, maxContentHistory),
         };
+        console.log('//------------- ready to upload', item);
         const syncLocationToStore = await uploadContent(
           item,
           tooLateChecker(restartContentSyncAfter),
