@@ -21,6 +21,14 @@
         </menu-entry>
       </div>
       <hr>
+      <div v-for="token in covenantsqlTokens" :key="token.sub">
+        <menu-entry @click.native="saveCovenantsql(token)">
+          <icon-provider slot="icon" provider-id="covenantsql"></icon-provider>
+          <div>Save on CovenantSQL</div>
+          <span>{{token.endpoint}}</span>
+          <span>{{token.dbid}}</span>
+        </menu-entry>
+      </div>
       <div v-for="token in dropboxTokens" :key="token.sub">
         <menu-entry @click.native="openDropbox(token)">
           <icon-provider slot="icon" provider-id="dropbox"></icon-provider>
@@ -157,6 +165,9 @@ export default {
     googleDriveTokens() {
       return tokensToArray(store.getters['data/googleTokensBySub'], token => token.isDrive);
     },
+    covenantsqlTokens() {
+      return tokensToArray(store.getters['data/covenantsqlTokensBySub']);
+    },
     noToken() {
       return !this.googleDriveTokens.length
         && !this.dropboxTokens.length
@@ -266,6 +277,11 @@ export default {
     async saveGitlab(token) {
       try {
         await openSyncModal(token, 'gitlabSave');
+      } catch (e) { /* cancel */ }
+    },
+    async saveCovenantsql(token) {
+      try {
+        await openSyncModal(token, 'covenantsqlSave');
       } catch (e) { /* cancel */ }
     },
   },

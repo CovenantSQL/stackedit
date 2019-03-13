@@ -46,6 +46,7 @@ export default class Provider {
   static parseContent(serializedContent, id) {
     let text = serializedContent;
     const extractedData = dataExtractor.exec(serializedContent);
+    console.log('// parseContent', extractedData);
     let result;
     if (!extractedData) {
       // In case stackedit's data has been manually removed, try to restore them
@@ -56,6 +57,7 @@ export default class Provider {
         const serializedData = extractedData[1].replace(/\s/g, '');
         const parsedData = JSON.parse(utils.decodeBase64(serializedData));
         text = text.slice(0, extractedData.index);
+        console.log('// parsedData', parsedData, text);
         if (parsedData.properties) {
           result.properties = utils.sanitizeText(parsedData.properties);
         }

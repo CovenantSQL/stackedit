@@ -15,7 +15,7 @@
       <form-entry label="Database ID" error="dbid">
         <input slot="field" class="textfield" type="text" v-model.trim="dbid" @keydown.enter="resolve()">
         <div class="form-entry__info">
-          <b>Example:</b> <pre style="display: inline">16c421128eeb8bb6c35eb633a16d206edbd653ce52c52dcda0abb767d2bb9ed0</pre>
+          <b>Example:</b> <pre class="dbid">16c421128eeb8bb6c35eb633a16d206edbd653ce52c52dcda0abb767d2bb9ed0</pre>
         </div>
         <div class="form-entry__actions">
           <a href="https://docs.gitlab.com/ee/integration/oauth_provider.html" target="_blank">More info</a>
@@ -31,6 +31,8 @@
 
 <script>
 import modalTemplate from '../common/modalTemplate';
+import covenantsqlHelper from '../../../services/providers/helpers/covenantsqlHelper';
+import covenantsqlProivder from '../../../services/providers/covenantsqlProvider';
 
 export default modalTemplate({
   data: () => ({}),
@@ -47,14 +49,28 @@ export default modalTemplate({
         this.setError('dbid');
       }
       if (this.endpoint && this.dbid) {
-        this.config.resolve({
+        const token = {
+          sub: 'cql',
           endpoint: this.endpoint,
           dbid: this.dbid,
-        });
+        };
+        covenantsqlHelper.setToken(token);
 
-        alert('Call covenantsql connect, if return true then contine to load file and write file');
+        covenantsqlProivder.connect().then((connection) => {
+          console.log('// CovenantSQL connected', connection);
+          // create stackedit table if not exists
+          covenantsqlProivder.createTableIfNotExists();
+          this.config.resolve(token);
+        });
       }
     },
   },
 });
 </script>
+
+<style lang="scss" scoped>
+.dbid {
+  font-size: 8px;
+  display: inline;
+}
+</style>

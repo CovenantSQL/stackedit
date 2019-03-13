@@ -196,6 +196,7 @@ export default {
     gitlabTokensBySub: (state, { tokensByType }) => tokensByType.gitlab || {},
     wordpressTokensBySub: (state, { tokensByType }) => tokensByType.wordpress || {},
     zendeskTokensBySub: (state, { tokensByType }) => tokensByType.zendesk || {},
+    covenantsqlTokensBySub: (state, { tokensByType }) => tokensByType.covenantsql || {},
   },
   actions: {
     setSettings: setter('settings'),
@@ -267,5 +268,6 @@ export default {
     addGitlabToken: tokenAdder('gitlab'),
     addWordpressToken: tokenAdder('wordpress'),
     addZendeskToken: tokenAdder('zendesk'),
+    addCovenantsqlToken: tokenAdder('covenantsql'),
   },
 };
