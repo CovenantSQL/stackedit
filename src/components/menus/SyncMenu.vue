@@ -171,7 +171,8 @@ export default {
     noToken() {
       return !this.googleDriveTokens.length
         && !this.dropboxTokens.length
-        && !this.githubTokens.length;
+        && !this.githubTokens.length
+        && !this.covenantsqlTokens.length;
     },
   },
   methods: {

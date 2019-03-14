@@ -84,4 +84,8 @@ export default {
 .icon-provider--couchdb {
   background-image: url(../assets/iconCouchdb.svg);
 }
+
+.icon-provider--covenantsql {
+  background-image: url(../assets/iconCovenantsql.svg);
+}
 </style>

@@ -23,23 +23,29 @@
 <script>
 import covenantsqlProvider from '../../../services/providers/covenantsqlProvider';
 import modalTemplate from '../common/modalTemplate';
+import store from '../../../store';
 
 export default modalTemplate({
   data: () => ({
     fileId: '',
   }),
   created() {
-    this.fileId = `${this.currentFileName}.md`;
+    this.fileId = `${this.currentFileName}`;
   },
   methods: {
     resolve() {
-      if (!covenantsqlProvider.checkFile(this.fileId)) {
+      if (!this.fileId) {
         this.setError('fileId');
-      } else {
-        // Return new location
-        const location = covenantsqlProvider.storeFile(this.config.token, this.fileId);
-        this.config.resolve(location);
+        return;
       }
+      if (covenantsqlProvider.checkFile(this.fileId)) {
+        store.dispatch('notification/info', `There is no file call ${this.fileId} in CovenantSQL, will be saved as a new file`);
+      } else {
+        store.dispatch('notification/info', 'already has file');
+      }
+      console.log('this file will be saved on CovenantSQL as', this.fileId);
+      const location = covenantsqlProvider.makeLocation(this.fileId);
+      this.config.resolve(location);
     },
   },
 });

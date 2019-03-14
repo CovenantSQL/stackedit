@@ -9,7 +9,7 @@
         <!-- <input v-if="config.forceServerUrl" slot="field" class="textfield" type="text" disabled="disabled" v-model="config.forceServerUrl"> -->
         <input slot="field" class="textfield" type="text" v-model.trim="endpoint" @keydown.enter="resolve()">
         <div class="form-entry__info">
-          <b>Example:</b> <pre style="display: inline">127.0.0.1:6000</pre> (without `http://`)
+          <b>Example:</b> <pre style="display: inline">127.0.0.1:8888</pre> (without `http://`)
         </div>
       </form-entry>
       <form-entry label="Database ID" error="dbid">

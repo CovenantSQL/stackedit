@@ -281,6 +281,10 @@ export default {
   }
 }
 
+.navigation-bar__button {
+  background: white;
+}
+
 .navigation-bar__inner--title * {
   flex: none;
 }
