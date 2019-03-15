@@ -82,7 +82,7 @@ export default new Provider({
   },
   getLocationUrl() {
     const { dbid } = this.getConfig();
-    return `http://192.168.2.100:11149/?covenantsql=cql_adminer_adapter&username=&db=${dbid}&select=stackedit`;
+    return `http://192.168.2.100:11149/?covenantsql=cql_adminer_adapter&username=&db=${dbid}&select=stackedit&columns[0][fun]=&columns[0][col]=&where[0][col]=&where[0][op]==&where[0][val]=&order[0]=created_at&desc[0]=1&order[01]=&limit=10&text_length=100`;
   },
   getLocationDescription({ path, fileId }) {
     return fileId || path;
