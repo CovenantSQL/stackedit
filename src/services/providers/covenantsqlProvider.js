@@ -17,8 +17,13 @@ export default new Provider({
   },
   async connect() {
     const { endpoint, dbid } = this.getConfig();
-    const connection = await CovenantSQLProxy.createConnection({ endpoint, dbid });
-    return connection;
+    try {
+      const connection = await CovenantSQLProxy.createConnection({ endpoint, dbid });
+      return connection;
+    } catch (e) {
+      store.dispatch('notification/error', `Connect CovenantSQL ${e}`);
+      throw e;
+    }
   },
   async createTableIfNotExists() {
     const createTableSQL = `
