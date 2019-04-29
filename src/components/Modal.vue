@@ -242,6 +242,7 @@ export default {
 }
 
 .modal__sponsor-banner {
+  display: none;
   position: fixed;
   z-index: 1;
   width: 100%;

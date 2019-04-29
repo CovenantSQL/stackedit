@@ -29,7 +29,8 @@ export default new Provider({
     const createTableSQL = `
       CREATE TABLE IF NOT EXISTS stackedit (\
       id INTEGER PRIMARY KEY AUTOINCREMENT,
-      name TEXT NOT NULL,
+      username TEXT NOT NULL,
+      fileId TEXT NOT NULL,
       content TEXT NOT NULL,
       created_at DATETIME NOT NULL,
       updated_at DATETIME NOT NULL
@@ -39,21 +40,22 @@ export default new Provider({
     const result = conn.exec(createTableSQL);
     return result;
   },
-  async checkFile(name) {
-    const selectSQL = 'SELECT * FROM stackedit WHERE name = ? LIMIT 1;';
+  async checkFile(username, fileId) {
+    const selectSQL = 'SELECT * FROM stackedit WHERE username = ? AND fileId = ? LIMIT 1;';
     const conn = await this.connect();
-    const result = await conn.query(selectSQL, [name]);
+    const result = await conn.query(selectSQL, [username, fileId]);
     return result.length > 0;
   },
-  async storeFile(name) {
-    console.log(name);
+  async storeFile(fileId) {
+    console.log(fileId);
   },
   async downloadContent(token, syncLocation) {
-    const name = syncLocation.path;
+    const username = localStorage.getItem('username');
+    const fileId = syncLocation.path;
 
-    const selectSQL = 'SELECT * FROM stackedit WHERE name = ? ORDER BY `updated_at` DESC LIMIT 1;';
+    const selectSQL = 'SELECT * FROM stackedit WHERE username = ? AND fileId = ? ORDER BY `updated_at` DESC LIMIT 1;';
     const conn = await this.connect();
-    const result = await conn.query(selectSQL, [name]);
+    const result = await conn.query(selectSQL, [username, fileId]);
     // result[0][2] indicates the 3rd column is content
     const content = result && result[0] && result[0][2];
     const parsed = Provider.parseContent(content, `${syncLocation.fileId}/content`);
@@ -62,15 +64,16 @@ export default new Provider({
     return 0;
   },
   async uploadContent(token, content, syncLocation) {
-    const writeSQL = 'INSERT INTO stackedit (name, content, created_at, updated_at) VALUES (?, ?, ?, ?);';
-    const name = syncLocation.path;
+    const writeSQL = 'INSERT INTO stackedit (username, fileId, content, created_at, updated_at) VALUES (?, ?, ?, ?, ?);';
+    const username = localStorage.getItem('username');
+    const fileId = syncLocation.path;
     const serializedContent = Provider.serializeContent(content);
     const now = (new Date()).toISOString();
 
     const conn = await this.connect();
     console.log('/// uploading', serializedContent);
     try {
-      await conn.exec(writeSQL, [name, serializedContent, now, now]);
+      await conn.exec(writeSQL, [username, fileId, serializedContent, now, now]);
     } catch (e) {
       console.error(e);
       store.dispatch('notification/error', e);

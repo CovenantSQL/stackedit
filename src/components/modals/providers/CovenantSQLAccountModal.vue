@@ -9,16 +9,17 @@
         <!-- <input v-if="config.forceServerUrl" slot="field" class="textfield" type="text" disabled="disabled" v-model="config.forceServerUrl"> -->
         <input slot="field" class="textfield" type="text" v-model.trim="endpoint" @keydown.enter="resolve()">
         <div class="form-entry__info">
-          <b>Example:</b> <pre style="display: inline">127.0.0.1:8888</pre> (without `http://`)
+          <b>Local Proxy Example:</b> <pre style="display: inline">127.0.0.1:8888</pre><br />
+          <b>Current TestNet Public Proxy is</b> <pre style="display: inline">api00.cn.gridb.io:7784</pre>
         </div>
       </form-entry>
       <form-entry label="Database ID" error="dbid">
         <input slot="field" class="textfield" type="text" v-model.trim="dbid" @keydown.enter="resolve()">
         <div class="form-entry__info">
-          <b>Example:</b> <pre class="dbid">16c421128eeb8bb6c35eb633a16d206edbd653ce52c52dcda0abb767d2bb9ed0</pre>
+          <b>Current TestNet Public DB:</b> <pre class="dbid">16c421128eeb8bb6c35eb633a16d206edbd653ce52c52dcda0abb767d2bb9ed0</pre>
         </div>
         <div class="form-entry__actions">
-          <a href="https://docs.gitlab.com/ee/integration/oauth_provider.html" target="_blank">More info</a>
+          <a href="https://developers.covenantsql.io/docs/quickstart/" target="_blank">How to setup your own database?</a>
         </div>
       </form-entry>
     </div>
@@ -35,11 +36,14 @@ import covenantsqlHelper from '../../../services/providers/helpers/covenantsqlHe
 import covenantsqlProivder from '../../../services/providers/covenantsqlProvider';
 
 export default modalTemplate({
-  data: () => ({}),
-  computedLocalSettings: {
-    endpoint: 'covenantsqlEndpoint',
-    dbid: 'covenantsqlDBID',
-  },
+  data: () => ({
+    endpoint: 'api00.cn.gridb.io:7784',
+    dbid: '16c421128eeb8bb6c35eb633a16d206edbd653ce52c52dcda0abb767d2bb9ed0',
+  }),
+  // computedLocalSettings: {
+  //   endpoint: 'covenantsqlEndpoint',
+  //   dbid: 'covenantsqlDBID',
+  // },
   methods: {
     resolve() {
       if (!this.endpoint) {
