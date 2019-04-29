@@ -10,6 +10,7 @@ import './providers/couchdbWorkspaceProvider';
 import './providers/githubWorkspaceProvider';
 import './providers/gitlabWorkspaceProvider';
 import './providers/googleDriveWorkspaceProvider';
+// import covenantsqlProvider from './providers/covenantsqlProvider';
 import tempFileSvc from './tempFileSvc';
 import workspaceSvc from './workspaceSvc';
 import constants from '../data/constants';
@@ -204,6 +205,11 @@ const createSyncLocation = (syncLocation) => {
   store.dispatch(
     'queue/enqueue',
     async () => {
+      // request covenantsql and restore content
+      // bug with provider serializeContent and deserilized by Chenxi 2019-04-29
+      // const content = await covenantsqlProvider.downloadContent('', syncLocation);
+      // console.log('//////-----------------', content);
+
       const provider = providerRegistry.providersById[syncLocation.providerId];
       const token = provider.getToken(syncLocation);
       const updatedSyncLocation = await provider.uploadContent(token, {

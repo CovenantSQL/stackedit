@@ -56,11 +56,12 @@ export default new Provider({
     const selectSQL = 'SELECT * FROM stackedit WHERE username = ? AND fileId = ? ORDER BY `updated_at` DESC LIMIT 1;';
     const conn = await this.connect();
     const result = await conn.query(selectSQL, [username, fileId]);
-    // result[0][2] indicates the 3rd column is content
-    const content = result && result[0] && result[0][2];
+    // result[0][3] indicates the 4th column, which is text
+    const content = result && result[0] && result[0][3];
     const parsed = Provider.parseContent(content, `${syncLocation.fileId}/content`);
     console.log(parsed);
 
+    // temporarily block download since serialized & desrialized problem
     return 0;
   },
   async uploadContent(token, content, syncLocation) {
@@ -86,6 +87,7 @@ export default new Provider({
   getLocationUrl() {
     const { dbid } = this.getConfig();
     return `https://web.covenantsql.io/?covenantsql=cql_adminer_adapter&username=&db=${dbid}&select=stackedit&columns[0][fun]=&columns[0][col]=&where[0][col]=&where[0][op]==&where[0][val]=&order[0]=created_at&desc[0]=1&order[01]=&limit=10&text_length=100`;
+    // return `http://192.168.2.100:11149/?covenantsql=cql_adminer_adapter&username=&db=${dbid}&select=stackedit&columns[0][fun]=&columns[0][col]=&where[0][col]=&where[0][op]==&where[0][val]=&order[0]=created_at&desc[0]=1&order[01]=&limit=10&text_length=100`;
   },
   getLocationDescription({ path, fileId }) {
     return fileId || path;

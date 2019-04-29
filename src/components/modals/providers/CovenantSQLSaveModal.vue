@@ -51,11 +51,13 @@ export default modalTemplate({
         this.setError('fileId');
         return;
       }
-      if (covenantsqlProvider.checkFile(this.username, this.fileId)) {
-        store.dispatch('notification/info', `There is no ${this.username}'s file call ${this.fileId} in CovenantSQL, will be saved as a new file`);
-      } else {
-        store.dispatch('notification/info', 'already has file');
-      }
+      covenantsqlProvider.checkFile(this.username, this.fileId).then((exists) => {
+        if (exists) {
+          store.dispatch('notification/info', `Already has file: ${this.fileId}, will sync and overwirte.`);
+        } else {
+          store.dispatch('notification/info', `There is no ${this.username}'s file call ${this.fileId} in CovenantSQL, will be saved as a new file`);
+        }
+      });
       console.log('this file will be saved on CovenantSQL as', this.fileId, this.username);
       const location = covenantsqlProvider.makeLocation(this.fileId);
       this.config.resolve(location);

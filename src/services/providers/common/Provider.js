@@ -35,8 +35,10 @@ export default class Provider {
     }
     if (Object.keys(data).length) {
       const serializedData = utils.encodeBase64(JSON.stringify(data)).replace(/(.{50})/g, '$1\n');
+      // const serializedData = utils.encodeBase64(JSON.stringify(data));
       result += `<!--stackedit_data:\n${serializedData}\n-->`;
     }
+    // console.log('@@@@@@@@@@@@@@@@@@@', result);
     return result;
   }
 
@@ -56,7 +58,6 @@ export default class Provider {
         const serializedData = extractedData[1].replace(/\s/g, '');
         const parsedData = JSON.parse(utils.decodeBase64(serializedData));
         text = text.slice(0, extractedData.index);
-        console.log('// parsedData', parsedData, text);
         if (parsedData.properties) {
           result.properties = utils.sanitizeText(parsedData.properties);
         }
@@ -71,6 +72,7 @@ export default class Provider {
         // Ignore
       }
     }
+    console.log('// parsed text', text);
     result.text = utils.sanitizeText(text);
     if (!result.history) {
       result.history = [];
