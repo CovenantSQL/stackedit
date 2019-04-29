@@ -21,10 +21,9 @@
       <div class="navigation-bar__title navigation-bar__title--fake text-input"></div>
       <div class="navigation-bar__title navigation-bar__title--text text-input" :style="{width: titleWidth + 'px'}">{{title}}</div>
       <!-- <input class="navigation-bar__title navigation-bar__title--input text-input" :class="{'navigation-bar__title--focus': titleFocus, 'navigation-bar__title--scrolling': titleScrolling}" :style="{width: titleWidth + 'px'}" @focus="editTitle(true)" @blur="editTitle(false)" @keydown.enter="submitTitle(false)" @keydown.esc.stop="submitTitle(true)" @mouseenter="titleHover = true" @mouseleave="titleHover = false" v-model="title"> -->
-      <input class="navigation-bar__title navigation-bar__title--input text-input" :class="{'navigation-bar__title--focus': titleFocus, 'navigation-bar__title--scrolling': titleScrolling}" :style="{width: titleWidth + 'px'}" @focus="editTitle(true)" @blur="editTitle(false)" @keydown.enter="submitTitle(false)" @keydown.esc.stop="submitTitle(true)" @mouseenter="titleHover = true" @mouseleave="titleHover = false" v-model="title">
       <!-- Sync/Publish -->
       <div class="flex flex--row" :class="{'navigation-bar__hidden': styles.hideLocations}">
-        <a class="navigation-bar__button navigation-bar__button--location button" :class="{'navigation-bar__button--blink': location.id === currentLocation.id}" v-for="location in syncLocations" :key="location.id" :href="location.url" target="_blank" v-title="'Synchronized location'"><icon-provider :provider-id="location.providerId"></icon-provider></a>
+        <a class="navigation-bar__button navigation-bar__button--location button" :class="{'navigation-bar__button--blink': syncLocations[0].id === currentLocation.id}" :href="syncLocations[0].url" target="_blank" v-title="'Synchronized location'"><icon-provider :provider-id="syncLocations[0].providerId"></icon-provider></a>
         <button class="navigation-bar__button navigation-bar__button--sync button" :disabled="!isSyncPossible || isSyncRequested || offline" @click="requestSync" v-title="'Synchronize now'"><icon-sync></icon-sync></button>
         <a class="navigation-bar__button navigation-bar__button--location button" :class="{'navigation-bar__button--blink': location.id === currentLocation.id}" v-for="location in publishLocations" :key="location.id" :href="location.url" target="_blank" v-title="'Publish location'"><icon-provider :provider-id="location.providerId"></icon-provider></a>
 
@@ -459,7 +458,7 @@ export default {
   text-overflow: ellipsis;
 
   .navigation-bar--editor & {
-    display: none;
+    display: inline-block;
   }
 }
 
