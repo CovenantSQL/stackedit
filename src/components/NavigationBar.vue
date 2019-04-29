@@ -35,10 +35,10 @@
             @click="saveCovenantsql(token)"
             v-title="'Publish now'"
           >
-            <icon-upload></icon-upload>
+            <icon-database slot="icon"></icon-database>
           </button>
         </div>
-        <button class="navigation-bar__button navigation-bar__button--publish button" :disabled="!publishLocations.length || isPublishRequested || offline" @click="requestPublish" v-title="'Publish now'"><icon-upload></icon-upload></button>
+        <!-- <button class="navigation-bar__button navigation-bar__button--publish button" :disabled="!publishLocations.length || isPublishRequested || offline" @click="requestPublish" v-title="'Publish now'"><icon-upload></icon-upload></button> -->
       </div>
       <!-- Revision -->
       <div class="flex flex--row" v-if="revisionContent">
@@ -355,6 +355,7 @@ export default {
       }
     }
     &.navigation-bar__button--stackedit {
+      display: none;
       opacity: 0.85;
 
       &:active,

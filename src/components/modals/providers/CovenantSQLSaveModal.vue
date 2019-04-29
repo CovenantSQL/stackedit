@@ -5,7 +5,7 @@
         <icon-provider provider-id="covenantsql"></icon-provider>
       </div>
       <p>Save <b>{{currentFileName}}</b> to <b>CovenantSQL</b> and keep it synced.</p>
-      <form-entry label="Username" error="fileId">
+      <form-entry label="Username" error="username">
         <input slot="field" class="textfield" type="text" v-model.trim="username" @keydown.enter="resolve()">
         <div class="form-entry__info">
           <b>Your username will be the namespace.</b><br />

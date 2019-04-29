@@ -267,7 +267,7 @@ const isTempFile = (fileId) => {
   const { welcomeFileHashes } = store.getters['data/localSettings'];
   const hash = utils.hash(content.text);
   const hasDiscussions = Object.keys(content.discussions).length;
-  return file.name === 'Welcome file' && welcomeFileHashes[hash] && !hasDiscussions;
+  return file.name === 'Welcome' && welcomeFileHashes[hash] && !hasDiscussions;
 };
 
 /**

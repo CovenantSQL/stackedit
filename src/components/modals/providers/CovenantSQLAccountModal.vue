@@ -19,7 +19,7 @@
           <b>Current TestNet Public DB:</b> <pre class="dbid">16c421128eeb8bb6c35eb633a16d206edbd653ce52c52dcda0abb767d2bb9ed0</pre>
         </div>
         <div class="form-entry__actions">
-          <a href="https://developers.covenantsql.io/docs/quickstart/" target="_blank">How to setup your own database?</a>
+          <a href="https://developers.covenantsql.io/docs/quickstart/" target="_blank">Curious of how to create own database?</a>
         </div>
       </form-entry>
     </div>
@@ -34,6 +34,7 @@
 import modalTemplate from '../common/modalTemplate';
 import covenantsqlHelper from '../../../services/providers/helpers/covenantsqlHelper';
 import covenantsqlProivder from '../../../services/providers/covenantsqlProvider';
+import store from '../../../store';
 
 export default modalTemplate({
   data: () => ({
@@ -62,6 +63,7 @@ export default modalTemplate({
 
         covenantsqlProivder.connect().then((connection) => {
           console.log('// CovenantSQL connected', connection);
+          store.dispatch('notification/info', `Connected CovenantSQL DB: ${this.dbid}`);
           // create stackedit table if not exists
           covenantsqlProivder.createTableIfNotExists();
           this.config.resolve(token);

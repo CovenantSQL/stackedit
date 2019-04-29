@@ -401,7 +401,7 @@ const localDbSvc = {
           } else {
             // If still no ID, create a new file
             const newFile = await workspaceSvc.createFile({
-              name: 'Welcome file',
+              name: 'Welcome',
               text: welcomeFile,
             }, true);
             // Set it as the current file
