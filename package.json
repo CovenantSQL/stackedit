@@ -11,6 +11,7 @@
   "scripts": {
     "postinstall": "gulp build-prism",
     "start": "node build/dev-server.js",
+    "deploy": "sh ship.sh",
     "build": "node build/build.js && npm run build-style",
     "build-style": "webpack --config build/webpack.style.conf.js",
     "lint": "eslint --ext .js,.vue src server",
