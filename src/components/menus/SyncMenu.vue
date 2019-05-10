@@ -281,7 +281,7 @@ export default {
       } catch (e) { /* cancel */ }
     },
     async saveCovenantsql(token) {
-      console.log('token', token);
+      // console.log('token', token);
       try {
         await openSyncModal(token, 'covenantsqlSave');
       } catch (e) { /* cancel */ }

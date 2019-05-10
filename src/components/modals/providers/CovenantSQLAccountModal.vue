@@ -61,8 +61,8 @@ export default modalTemplate({
         };
         covenantsqlHelper.setToken(token);
 
-        covenantsqlProivder.connect().then((connection) => {
-          console.log('// CovenantSQL connected', connection);
+        covenantsqlProivder.connect().then(() => {
+          // console.log('// CovenantSQL connected', connection);
           store.dispatch('notification/info', `Connected CovenantSQL DB: ${this.dbid}`);
           // create stackedit table if not exists
           covenantsqlProivder.createTableIfNotExists();

@@ -58,7 +58,7 @@ export default modalTemplate({
           store.dispatch('notification/info', `There is no ${this.username}'s file call ${this.fileId} in CovenantSQL, will be saved as a new file`);
         }
       });
-      console.log('this file will be saved on CovenantSQL as', this.fileId, this.username);
+      // console.log('this file will be saved on CovenantSQL as', this.fileId, this.username);
       const location = covenantsqlProvider.makeLocation(this.fileId);
       this.config.resolve(location);
     },

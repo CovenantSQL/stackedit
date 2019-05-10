@@ -46,8 +46,8 @@ export default new Provider({
     const result = await conn.query(selectSQL, [username, fileId]);
     return result.length > 0;
   },
-  async storeFile(fileId) {
-    console.log(fileId);
+  async storeFile() {
+    // console.log(fileId);
   },
   async downloadContent(token, syncLocation) {
     const username = localStorage.getItem('username');
@@ -59,10 +59,10 @@ export default new Provider({
     // result[0][3] indicates the 4th column, which is text
     const content = result && result[0] && result[0][3];
     const parsed = Provider.parseContent(content, `${syncLocation.fileId}/content`);
-    console.log(parsed);
+    // console.log(parsed);
 
     // temporarily block download since serialized & desrialized problem
-    return 0;
+    return true ? 0 : parsed;
   },
   async uploadContent(token, content, syncLocation) {
     const writeSQL = 'INSERT INTO stackedit (username, fileId, content, created_at, updated_at) VALUES (?, ?, ?, ?, ?);';
@@ -72,11 +72,11 @@ export default new Provider({
     const now = (new Date()).toISOString();
 
     const conn = await this.connect();
-    console.log('/// uploading', serializedContent);
+    // console.log('/// uploading', serializedContent);
     try {
       await conn.exec(writeSQL, [username, fileId, serializedContent, now, now]);
     } catch (e) {
-      console.error(e);
+      // console.error(e);
       store.dispatch('notification/error', e);
     }
 

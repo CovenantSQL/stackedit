@@ -72,7 +72,7 @@ export default class Provider {
         // Ignore
       }
     }
-    console.log('// parsed text', text);
+    // console.log('// parsed text', text);
     result.text = utils.sanitizeText(text);
     if (!result.history) {
       result.history = [];
